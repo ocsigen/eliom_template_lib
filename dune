@@ -2,8 +2,7 @@
 
 (library
  (name project_name)
- (modules
-  (:standard \ Project_name_main))
+ (modules (:standard))
  (libraries eliom.server ocsipersist-sqlite ocsipersist-sqlite.settings)
  (library_flags
   (:standard -linkall))
