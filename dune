@@ -9,13 +9,13 @@
  (wrapped false)
  (preprocess
   (pps
-   lwt_ppx
    ;   pgocaml_ppx
    js_of_ocaml-ppx_deriving_json
    ;   ocsigen-i18n
    ocsigen-ppx-rpc
    eliom.ppx.server
    --
+   --rpc-raw
    ;   --prefix
    ;   Project_name_
    ;   --suffix
@@ -57,11 +57,10 @@
  client
  (executables
   (names project_name)
-  (modes js byte)
+  (modes js byte wasm)
   (preprocess
    (pps
     js_of_ocaml-ppx
-    lwt_ppx
     ;    ocsigen-i18n
     ;    --
     ;    --prefix
@@ -78,9 +77,9 @@
     --enable
     with-js-error
     --enable
-    use-js-string
-    --no-source-map))
-  ; source maps are slow...
+    use-js-string))
+  (wasm_of_ocaml
+   (flags :standard))
   (libraries eliom.client))
  (dynamic_include ../gen/dune.client))
 
@@ -92,6 +91,7 @@
   project_name.cma
   client/project_name.bc
   client/project_name.bc.js
+  client/project_name.bc.wasm.js
   tools/check_modules.ml)
  (action
   (run ocaml -I +unix -I +str tools/check_modules.ml project_name)))
