@@ -5,7 +5,7 @@ let%server application_name = "project_name"
 let%client application_name = Eliom_client.get_application_name ()
 
 (* Create a module for the application. See
-   https://ocsigen.org/eliom/manual/clientserver-applications for more
+   https://ocsigen.org/eliom/latest/clientserver/applications.html for more
    information. *)
 module%shared App = Eliom_registration.App (struct
     let application_name = application_name
